@@ -1,0 +1,309 @@
+[bar/mybar]
+
+override-redirect = true
+
+top = true
+
+fixed-center = true
+
+width = 2535
+height = 32
+
+offset-x = 10
+offset-y = 10
+
+; Background ARGB color (e.g. #f00, #ff992a, #ddff1023)
+background = #992E3440
+
+; Foreground ARGB color (e.g. #f00, #ff992a, #ddff1023)
+foreground = #000
+
+line-size = 2
+line-color = #fff
+
+padding-right = 3
+
+module-margin = 1
+
+;font-0 = DejaVu Sans Mono for Powerline:style=Medium:size=7.5;2
+font-0 = Terminus (TTF):size=8.5;1.5
+font-1 = feather-custom:size=9;3
+;font-2 = FontAwesome:style=Solid:size=8;2
+
+modules-left = i3
+modules-center = title
+modules-right = wireless-network sep arrow  sep memory sep cpu sep pulseaudio sep date
+
+spacing = 0
+
+dim-value = 1.0
+
+wm-name = i3
+
+; Available positions:
+;   left
+;   center
+;   right
+;   none
+tray-position = none
+
+tray-detached = false
+
+tray-maxsize = 16
+
+tray-transparent = false
+
+tray-background = ${root.background}
+
+tray-offset-x = 0
+tray-offset-y = 0
+
+tray-padding = 0
+
+tray-scale = 1.0
+
+wm-restack = i3
+
+dpi-x = 135
+dpi-y = 135
+
+enable-ipc = false
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+
+strip-wsnumbers = true
+
+index-sort = true
+
+enable-click = true
+
+enable-scroll = false
+
+wrapping-scroll = false
+
+reverse-scroll = false
+
+fuzzy-match = true
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-unfocused-foreground = #D8DEE9
+
+label-focused = %index%
+label-focused-background = #4C566A
+label-focused-padding = 2
+label-focused-foreground = #D8DEE9
+
+[module/title]
+type = internal/xwindow
+
+; Available tags:
+;   <label> (default)
+format = <label>
+format-padding = 1
+format-foreground = #fff
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = " %title%"
+label-maxlen = 30
+
+; Used instead of label when there is no window title
+label-empty = " Desktop"
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+label-volume = %percentage%%
+label-volume-foreground = #D08770
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+label-muted = /
+label-muted-foreground = #D08770
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = #D08770
+
+; Right and Middle click
+click-right = pavucontrol
+; click-middle = 
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %a, %d %b
+
+; Optional time format
+time = %H:%M
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+date-alt = %a, %d %b
+time-alt = %H:%M:%S
+
+label = %date% %time%
+label-font = 0
+label-foreground = #D8DEE9
+
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+label =  %percentage:2%%
+
+label-foreground = #81A1C1
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+format = <label>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label =  %gb_used%
+
+label-foreground = #B48EAD
+
+
+[module/decor-glyph]
+type = custom/text
+content-foreground = #4C566A
+margin = 0
+
+[module/sep]
+inherit = module/decor-glyph
+content = "/"
+
+
+
+[bar/tray]
+
+monitor-strict = false
+
+width = 20
+
+height = 25
+
+offset-x = 98% ######### offset values only dtermine the position of bar in the screen set it accordingly to your need
+
+offset-y = 35
+
+override-redirect = true ############### to make offset vales to work override-direct value must be true
+
+fixed-center = true
+
+background = ${colors.modules-right-background}
+
+;foreground = ${colors.foreground}
+
+radius = 8
+
+line-size = 0
+
+line-color = #f00
+
+padding-left = 0
+
+padding-right = 1
+
+module-margin-left = 0
+
+module-margin-right = 0
+
+modules-right = sep
+
+tray-position = right
+
+tray-detached = false
+
+tray-offset-x = 0
+
+tray-offset-y = 0
+
+tray-padding = 1
+
+tray-maxsize = 20
+
+tray-scale = 1.0
+
+tray-background = ${colors.background}
+
+############################################################################
+
+[module/arrow]
+
+type = custom/script
+
+exec = echo "▼"
+
+label-foreground = #FFFFFF
+
+click-left = bash $HOME/.config/polybar/tinybar.sh
+
+click-right = bash $HOME/.config/polybar/killbar.sh
+
+############################################################################
